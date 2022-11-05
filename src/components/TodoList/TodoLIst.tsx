@@ -1,4 +1,5 @@
 import { ITodo } from "../../Types/ITodo";
+import { TodoItem } from "../TodoItem/TodoItem";
 
 interface Props {
   items: ITodo[];
@@ -7,7 +8,11 @@ interface Props {
 export const TodoList: React.FC<Props> = ({ items }) => {
   return (
     <ul className="todo-list" data-cy="todoList">
-      <li>
+      {items.map((item) => (
+        <TodoItem key={item.id} item={item} />
+      ))}
+
+      {/* <li>
         <div className="view">
           <input type="checkbox" className="toggle" id="toggle-view" />
           <label htmlFor="toggle-view">asdfghj</label>
@@ -41,7 +46,7 @@ export const TodoList: React.FC<Props> = ({ items }) => {
           <button type="button" className="destroy" data-cy="deleteTodo" />
         </div>
         <input type="text" className="edit" />
-      </li>
+      </li> */}
     </ul>
   );
 };

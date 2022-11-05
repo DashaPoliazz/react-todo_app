@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ITodo } from "../../Types/ITodo";
 
 interface ITodoSliceState {
@@ -28,7 +28,17 @@ const initialState: ITodoSliceState = {
 const todoSlice = createSlice({
   name: "todos",
   initialState,
-  reducers: {},
+  reducers: {
+    toggleStatus: (state: ITodoSliceState, action: PayloadAction<string>) => {
+      const todoToToggle = state.todos.find(
+        (todo) => todo.id === action.payload
+      );
+
+      if (todoToToggle) {
+        todoToToggle.completed = !todoToToggle?.completed;
+      }
+    },
+  },
 });
 
 export const todoSliceActions = todoSlice.actions;
