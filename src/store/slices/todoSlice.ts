@@ -1,17 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-interface ITodo {
-  id: string;
-  title: string;
-  completed: boolean;
-}
+import { ITodo } from "../../Types/ITodo";
 
 interface ITodoSliceState {
   todos: ITodo[];
 }
 
 const initialState: ITodoSliceState = {
-  todos: [],
+  todos: [
+    {
+      id: "id1",
+      title: "Title1",
+      completed: false,
+    },
+    {
+      id: "id2",
+      title: "Title2",
+      completed: true,
+    },
+    {
+      id: "id3",
+      title: "Title3",
+      completed: false,
+    },
+  ],
 };
 
 const todoSlice = createSlice({
@@ -21,4 +32,4 @@ const todoSlice = createSlice({
 });
 
 export const todoSliceActions = todoSlice.actions;
-export default todoSlice;
+export default todoSlice.reducer;
